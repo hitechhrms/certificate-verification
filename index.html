@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Certificate Verification System</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #4f58c7 0%, #68489c 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 30px 15px;
+    }
+
+    .container {
+      background: #ffffff;
+      border-radius: 24px;
+      max-width: 580px;
+      width: 100%;
+      padding: 50px 35px 35px 35px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+      text-align: center;
+    }
+
+    .main-title {
+      font-size: 38px;
+      font-weight: 700;
+      color: #4b66ea;
+      margin-bottom: 8px;
+      letter-spacing: -0.5px;
+    }
+
+    .sub-heading {
+      color: #636b74;
+      font-size: 16px;
+      margin-bottom: 28px;
+    }
+
+    .status-alert {
+      background-color: #d1e7dd;
+      color: #0f5132;
+      border-radius: 8px;
+      padding: 12px 18px;
+      font-size: 14.5px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 28px;
+    }
+
+    .details-box {
+      background-color: #f8f9fa;
+      border-radius: 14px;
+      padding: 18px 24px;
+      margin-bottom: 26px;
+      text-align: left;
+    }
+
+    .item-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 13px 0;
+      border-bottom: 1px solid #edf0f2;
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .item-row:last-child {
+      border-bottom: none;
+    }
+
+    .label-col {
+      color: #495057;
+      font-weight: 600;
+      width: 42%;
+    }
+
+    .value-col {
+      color: #212529;
+      font-weight: 500;
+      width: 58%;
+      text-align: right;
+      word-break: break-word;
+    }
+
+    .info-badge {
+      background-color: #def0ff;
+      color: #085cb8;
+      border-radius: 8px;
+      padding: 11px 16px;
+      font-size: 13px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      margin-bottom: 26px;
+    }
+
+    .footer-support {
+      color: #71777d;
+      font-size: 12.5px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1 class="main-title">Americo</h1>
+    <p class="sub-heading">Certificate Verification System</p>
+
+    <div class="status-alert">
+      <span>✅</span> Certificate Information Retrieved Successfully
+    </div>
+
+    <div class="details-box">
+      <div class="item-row">
+        <span class="label-col">Certificate Number:</span>
+        <span class="value-col" id="cert-no">-</span>
+      </div>
+
+      <div class="item-row">
+        <span class="label-col">Company Name:</span>
+        <span class="value-col" id="company-name">-</span>
+      </div>
+
+      <div class="item-row">
+        <span class="label-col">Certificate Standard:</span>
+        <span class="value-col" id="standard-val">-</span>
+      </div>
+
+      <div class="item-row">
+        <span class="label-col">Issue Date:</span>
+        <span class="value-col" id="issue-val">-</span>
+      </div>
+
+      <div class="item-row">
+        <span class="label-col">Expiry Date:</span>
+        <span class="value-col" id="expiry-val">-</span>
+      </div>
+
+      <div class="item-row">
+        <span class="label-col">Certification Body:</span>
+        <span class="value-col" id="cert-body">Americo</span>
+      </div>
+
+      <div class="item-row">
+        <span class="label-col">Accreditation Body:</span>
+        <span class="value-col" id="accred-body">UAF</span>
+      </div>
+    </div>
+
+    <div class="info-badge">
+      <span>📱</span> This information was retrieved by scanning a QR code on your certificate
+    </div>
+
+    <div class="footer-support">
+      For verification inquiries, contact our support team.
+    </div>
+  </div>
+
+  <script>
+    // URL parameters read kar ke elements ko populate karne ka script
+    const searchParams = new URLSearchParams(window.location.search);
+
+    const certParam = searchParams.get('cert');
+    const compParam = searchParams.get('company');
+    const stdParam = searchParams.get('standard');
+    const issueParam = searchParams.get('issue');
+    const expParam = searchParams.get('expiry');
+
+    if (certParam) document.getElementById('cert-no').textContent = certParam;
+    if (compParam) document.getElementById('company-name').textContent = compParam;
+    if (stdParam) document.getElementById('standard-val').textContent = stdParam;
+    if (issueParam) document.getElementById('issue-val').textContent = issueParam;
+    if (expParam) document.getElementById('expiry-val').textContent = expParam;
+  </script>
+
+</body>
+</html>
